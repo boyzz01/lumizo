@@ -31,7 +31,7 @@
                                             <!--end::Svg Icon-->
                                         </span>
                                         <div class="text-inverse-success font-weight-bolder font-size-h5 mb-2 mt-5">
-                                            {{ count($data) }}</div>
+                                        </div>
                                         <div class="font-weight-bold text-inverse-success font-size-sm">Total
                                             Anggota</div>
                                     </div>
@@ -43,7 +43,8 @@
 
                             <div class="col-xl-6">
                                 <!--begin::Stats Widget 15-->
-                                <a href="#" class="card card-custom bg-info bg-hover-state-info card-stretch gutter-b">
+                                <a href="#"
+                                    class="card card-custom bg-info bg-hover-state-info card-stretch gutter-b">
                                     <!--begin::Body-->
                                     <div class="card-body">
                                         <span class="svg-icon svg-icon-white svg-icon-3x ml-n1">
@@ -52,7 +53,7 @@
                                             <!--end::Svg Icon-->
                                         </span>
                                         <div class="text-inverse-success font-weight-bolder font-size-h5 mb-2 mt-5">
-                                            {{ count($umkm) }}</div>
+                                        </div>
                                         <div class="font-weight-bold text-inverse-success font-size-sm">Total
                                             UMKM</div>
                                     </div>
@@ -86,8 +87,10 @@
                                                 <svg xmlns="http://www.w3.org/2000/svg"
                                                     xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                                                     height="24px" viewBox="0 0 24 24" version="1.1">
-                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                        <rect x="0" y="0" width="24" height="24" />
+                                                    <g stroke="none" stroke-width="1" fill="none"
+                                                        fill-rule="evenodd">
+                                                        <rect x="0" y="0" width="24"
+                                                            height="24" />
                                                         <path
                                                             d="M3,16 L5,16 C5.55228475,16 6,15.5522847 6,15 C6,14.4477153 5.55228475,14 5,14 L3,14 L3,12 L5,12 C5.55228475,12 6,11.5522847 6,11 C6,10.4477153 5.55228475,10 5,10 L3,10 L3,8 L5,8 C5.55228475,8 6,7.55228475 6,7 C6,6.44771525 5.55228475,6 5,6 L3,6 L3,4 C3,3.44771525 3.44771525,3 4,3 L10,3 C10.5522847,3 11,3.44771525 11,4 L11,19 C11,19.5522847 10.5522847,20 10,20 L4,20 C3.44771525,20 3,19.5522847 3,19 L3,16 Z"
                                                             fill="#000000" opacity="0.3" />
@@ -180,45 +183,8 @@
 
 
                                         @php
-                                        $nomor = 1;
+                                            $nomor = 1;
                                         @endphp
-                                        @foreach ($data as $d)
-                                        <tr id="tr{{ $d->id }}">
-                                            <td style=" width:5%">{{ $nomor }}</td>
-                                            <td>{{ $d->nama }}</td>
-                                            <td>{{ $d->kta }}</td>
-                                            <td>{{ $d->email }}</td>
-                                            <td>{{ $d->jenis_kelamin }}</td>
-                                            <td>{{ $d->no_hp }}</td>
-                                            <td>{{ $d->alamat }}</td>
-                                            <td>{{ $d->jabatan }} {{ $d->tingkat }}</td>
-                                            <td nowrap="nowrap">
-
-
-                                                <a href="javascript:;" class="btn btn-sm btn-info btn-icon edit_btn"
-                                                    id="{{ $d->id }}" title=" Edit Data Pasien">
-                                                    <i class="la la-edit"></i>
-                                                </a>
-
-
-
-                                                <button type="submit" class="btn btn-sm btn-danger btn-icon"
-                                                    title="Delete"
-                                                    onclick="return confirm('Are you sure want to delete this data?')"><i
-                                                        class="la la-trash">
-                                                    </i>
-                                                </button>
-
-                                            </td>
-
-
-
-                                        </tr>
-
-                                        @php
-                                        $nomor++;
-                                        @endphp
-                                        @endforeach
 
 
 

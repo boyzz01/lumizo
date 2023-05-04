@@ -73,49 +73,15 @@ function active($currect_page)
 
 
                 <li class="menu-section">
-                    <h4 class="menu-text">Anggota</h4>
+                    <h4 class="menu-text">Master Data</h4>
                     <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
                 </li>
                 <li class="menu-item <?php active(''); ?>" aria-haspopup="true">
-                    <a href="" class="menu-link">
+                    <a href="{{ route('sponsor') }}" class="menu-link">
                         <span class="svg-icon menu-icon">
                             <i class="flaticon-users"></i>
                         </span>
-                        <span class="menu-text">Daftar Anggota</span>
-                    </a>
-                </li>
-                <li class="menu-item <?php active(''); ?>" aria-haspopup="true">
-                    <a href="" class="menu-link">
-                        <span class="svg-icon menu-icon">
-                            <i class="flaticon-users"></i>
-                        </span>
-                        <span class="menu-text">Daftar UMKM</span>
-                    </a>
-                </li>
-
-                <li class="menu-item <?php active(''); ?>" aria-haspopup="true">
-                    <a href="" class="menu-link">
-                        <span class="svg-icon menu-icon">
-                            <i class="flaticon-users"></i>
-                        </span>
-                        <span class="menu-text">Daftar Produk</span>
-                    </a>
-                </li>
-
-
-
-
-                <li class="menu-section">
-                    <h4 class="menu-text">Kegiatan</h4>
-                    <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
-                </li>
-                <li class="menu-item <?php active(''); ?>" aria-haspopup="true">
-                    <a href="" class="menu-link">
-                        <span class="svg-icon menu-icon">
-                            <i class="
-                            fas fa-clipboard-list"></i>
-                        </span>
-                        <span class="menu-text">Daftar Kegiatan</span>
+                        <span class="menu-text">Sponsor</span>
                     </a>
                 </li>
 
