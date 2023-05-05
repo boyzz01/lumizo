@@ -162,73 +162,7 @@
                             </div>
                             <div class="card-body">
                                 <!--begin: Datatable-->
-                                <table class="table table-bordered table-checkable" id="kt_datatable2">
-                                    <thead>
-                                        <tr>
-                                            <th style="width: 5%">No</th>
-                                            <th>Nama</th>
-                                            <th>KTA</th>
-                                            <th>Email</th>
-                                            <th>Jenis Kelamin</th>
-                                            <th>NO HP</th>
-                                            <th>Alamat</th>
-                                            <th>Jabatan</th>
 
-                                            <th>Aksi</th>
-
-
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-
-                                        @php
-                                            $nomor = 1;
-                                        @endphp
-                                        @foreach ($data as $d)
-                                            <tr id="tr{{ $d->id }}">
-                                                <td style=" width:5%">{{ $nomor }}</td>
-                                                <td>{{ $d->nama }}</td>
-                                                <td>{{ $d->kta }}</td>
-                                                <td>{{ $d->email }}</td>
-                                                <td>{{ $d->jenis_kelamin }}</td>
-                                                <td>{{ $d->no_hp }}</td>
-                                                <td>{{ $d->alamat }}</td>
-                                                <td>{{ $d->jabatan }} {{ $d->tingkat }}</td>
-                                                <td nowrap="nowrap">
-
-
-                                                    <a href="javascript:;"
-                                                        class="btn btn-sm btn-info btn-icon edit_btn"
-                                                        id="{{ $d->id }}" title=" Edit Data Pasien">
-                                                        <i class="la la-edit"></i>
-                                                    </a>
-
-
-
-                                                    <button type="submit" class="btn btn-sm btn-danger btn-icon"
-                                                        title="Delete"
-                                                        onclick="return confirm('Are you sure want to delete this data?')"><i
-                                                            class="la la-trash">
-                                                        </i>
-                                                    </button>
-
-                                                </td>
-
-
-
-                                            </tr>
-
-                                            @php
-                                                $nomor++;
-                                            @endphp
-                                        @endforeach
-
-
-
-
-                                    </tbody>
-                                </table>
                                 <!--end: Datatable-->
                             </div>
                         </div>
