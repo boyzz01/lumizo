@@ -85,6 +85,24 @@ function active($currect_page)
                     </a>
                 </li>
 
+                <li class="menu-item <?php active(''); ?>" aria-haspopup="true">
+                    <a href="{{ route('artikel') }}" class="menu-link">
+                        <span class="svg-icon menu-icon">
+                            <i class="flaticon-users"></i>
+                        </span>
+                        <span class="menu-text">Artikel</span>
+                    </a>
+                </li>
+
+                <li class="menu-item <?php active(''); ?>" aria-haspopup="true">
+                    <a href="{{ route('banners.index') }}" class="menu-link">
+                        <span class="svg-icon menu-icon">
+                            <i class="flaticon-users"></i>
+                        </span>
+                        <span class="menu-text">Banner</span>
+                    </a>
+                </li>
+
             </ul>
         </div>
     </div>

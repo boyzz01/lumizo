@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ArticlesController;
+use App\Http\Controllers\BannerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
@@ -29,3 +31,7 @@ Route::get('/verify/{token}', [RegisterController::class,'verif'] )->name('verif
 //crud
 Route::get('/sponsor', [SponsorController::class,'index'] )->name('sponsor')->middleware('auth');
 Route::post('/sponsor-save', [SponsorController::class,'save'] )->name('sponsor.save')->middleware('auth');
+
+Route::get('/articles', [ArticlesController::class, 'index'])->name('artikel')->middleware('auth');;
+Route::post('/articles', [ArticlesController::class, 'store'])->name('artikel.store')->middleware('auth');
+Route::resource('banners', BannerController::class)->middleware('auth');
