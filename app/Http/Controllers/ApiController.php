@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\VerificationEmail;
 use App\Models\Anggota;
+use App\Models\Banner;
 use App\Models\Berita;
 use App\Models\Kecamatan;
 use App\Models\Kelurahan;
@@ -27,6 +28,11 @@ class ApiController extends Controller
     public function getSponsor()
     {
         return response()->json(Sponsor::all());
+    }
+
+    public function getBanner()
+    {
+        return response()->json(Banner::all());
     }
 
    
