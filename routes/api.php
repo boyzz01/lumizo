@@ -20,3 +20,5 @@ Route::get('banner', [ApiController::class, 'getBanner']);
 
 Route::get('katalog/{id}', [ApiController::class, 'getDetailKatalog']);
 
+Route::get('katalog', [ApiController::class, 'getKatalog']);
+
