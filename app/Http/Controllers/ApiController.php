@@ -6,6 +6,7 @@ use App\Mail\VerificationEmail;
 use App\Models\Anggota;
 use App\Models\Banner;
 use App\Models\Berita;
+use App\Models\Catalog;
 use App\Models\Kecamatan;
 use App\Models\Kelurahan;
 use App\Models\Produk;
@@ -33,6 +34,12 @@ class ApiController extends Controller
     public function getBanner()
     {
         return response()->json(Banner::all());
+    }
+
+    public function getDetailKatalog($id){
+        $katalog = Catalog::find($id);
+        return response()->json($katalog);
+
     }
 
    
