@@ -137,7 +137,7 @@
 
                                                     <td>{{ $d->nama }}</td>
                                                     <td>{{ $d->harga }}</td>
-                                                    <td>{{ $d->deskripsi }}</td>
+                                                    <td>{!! $produk->deskripsi !!}</td>
 
                                                     <td nowrap="nowrap">
 
