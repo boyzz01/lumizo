@@ -43,7 +43,7 @@ class ApiController extends Controller
     }
 
     public function getKatalog(){
-        $katalog = Catalog::with('fotos')::all();
+        $katalog = Catalog::with('fotos')->get();
         return response()->json($katalog);
 
     }
