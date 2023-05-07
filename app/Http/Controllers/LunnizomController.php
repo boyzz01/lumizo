@@ -50,7 +50,7 @@ class LunnizomController extends Controller
         $catalog = Catalog::create([
             'nama' => $validatedData['nama'],
             'harga' => $validatedData['harga'],
-            'deskripsi' => $validatedData['deskripsi'],
+            'deskripsi' => nl2br($validatedData['deskripsi']),
             'jenis_catalog_id' => $validatedData['jenis_catalog_id'],
         ]);
 
