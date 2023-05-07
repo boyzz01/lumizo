@@ -143,7 +143,7 @@
 
 
                                                         <a href="javascript:;" class="btn btn-sm btn-info btn-icon edit_btn"
-                                                            id="{{ $d->id }}" title=" Edit Data Pasien">
+                                                            id="{{ $d->id }}" title=" Edit Data">
                                                             <i class="la la-edit"></i>
                                                         </a>
 

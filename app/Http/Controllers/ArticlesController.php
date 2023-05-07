@@ -22,8 +22,15 @@ class ArticlesController extends Controller
     {
         $article = new Article();
         $article->title = $request->title;
-        $article->content = $request->content;
+        $article->content = nl2br($request->content);
+        if($request->hasFile('photo')) {
+            $photo = $request->file('photo');
+            $filename = time() . '.' . $photo->getClientOriginalExtension();
+            $photo->storeAs('public/photos', $filename);
+            $article->photo = $filename;
+        }
+
         $article->save();
-        return redirect('/articles');
+        return redirect()->back()->with('success', 'Data berhasil disimpan');
     }
 }

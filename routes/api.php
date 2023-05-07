@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('sponsor', [ApiController::class, 'getSponsor']);
 Route::get('banner', [ApiController::class, 'getBanner']);
+Route::get('artikel', [ApiController::class, 'getArtikel']);
+Route::get('artikel/{id}', [ApiController::class, 'getDetailArtikel']);
 
 Route::get('katalog/{id}', [ApiController::class, 'getDetailKatalog']);
 

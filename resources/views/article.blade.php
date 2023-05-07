@@ -10,7 +10,7 @@
                         <div
                             class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
                             <div class="d-flex align-items-center flex-wrap mr-2">
-                                <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Data Sponsor</h5>
+                                <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Data Artikel</h5>
                             </div>
 
                         </div>
@@ -20,7 +20,7 @@
                         <div class="container">
                             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <form action="{{ route('sponsor.save') }}" method="POST" enctype="multipart/form-data"
+                                <form action="{{ route('artikel.store') }}" method="POST" enctype="multipart/form-data"
                                     autocomplete="off">
                                     {{ csrf_field() }}
                                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -35,16 +35,20 @@
                                             <div class="modal-body">
                                                 <div class="card-body">
                                                     <div class="form-group">
-                                                        <label>Nama Sponsor
+                                                        <label>Judul Artikel
                                                             <span class="text-danger"></span></label>
-                                                        <input type="text" name="name" class="form-control">
+                                                        <input type="text" class="form-control" id="title"
+                                                            name="title" required>
                                                     </div>
-
+                                                    <div class="form-group">
+                                                        <label for="content">Content</label>
+                                                        <textarea class="form-control" id="content" name="content" required></textarea>
+                                                    </div>
                                                     <div class="form-group">
                                                         <label>Gambar
                                                             <span class="text-danger"></span></label>
-                                                        <input type="file" name="image" id="image"
-                                                            class="form-control">
+                                                        <input type="file" class="form-control-file" id="photo"
+                                                            name="photo">
                                                     </div>
 
                                                 </div>
@@ -66,7 +70,7 @@
                             <div class="card card-custom">
                                 <div class="card-header flex-wrap py-5">
                                     <div class="card-title">
-                                        <h3 class="card-label">List Sponsor
+                                        <h3 class="card-label">List Artikel
                                             <span class="text-muted pt-2 font-size-sm d-block"></span>
                                         </h3>
                                     </div>
@@ -90,7 +94,7 @@
                                             <tr>
                                                 <th style="width: 5%">No</th>
                                                 <th>Gambar</th>
-                                                <th>Nama</th>
+                                                <th>Judul</th>
                                                 <th>Konten</th>
                                                 <th>Aksi</th>
 
@@ -106,16 +110,17 @@
                                             @foreach ($articles as $d)
                                                 <tr id="tr{{ $d->id }}">
                                                     <td style=" width:5%">{{ $nomor }}</td>
-                                                    <td><img src="{{ asset('/') }}/{{ $d->photo }}" height="50">
+                                                    <td><img src="{{ asset('storage/photos/' . $d->photo) }}"
+                                                            height="50">
                                                     </td>
                                                     <td>{{ $d->title }}</td>
-                                                    <td>{{ $d->content }}</td>
 
+                                                    <td>{!! $d->content !!}</td>
                                                     <td nowrap="nowrap">
 
 
                                                         <a href="javascript:;" class="btn btn-sm btn-info btn-icon edit_btn"
-                                                            id="{{ $d->id }}" title=" Edit Data Pasien">
+                                                            id="{{ $d->id }}" title="Edit Data">
                                                             <i class="la la-edit"></i>
                                                         </a>
 
@@ -129,7 +134,6 @@
                                                         </button>
 
                                                     </td>
-
 
 
                                                 </tr>

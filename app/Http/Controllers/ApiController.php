@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\VerificationEmail;
 use App\Models\Anggota;
+use App\Models\Article;
 use App\Models\Banner;
 use App\Models\Berita;
 use App\Models\Catalog;
@@ -47,6 +48,15 @@ class ApiController extends Controller
         return response()->json($katalog);
 
     }
+
+    public function getArtikel(){
+        return response()->json(Article::all());
+    }
+
+    public function getDetailArtikel($id){
+        return response()->json(Article::find($id));
+    }
+
 
    
 }
