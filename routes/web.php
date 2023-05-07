@@ -2,8 +2,11 @@
 
 use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FotoCatalogController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LunnizomController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SponsorController;
 use Illuminate\Support\Facades\Route;
@@ -35,3 +38,7 @@ Route::post('/sponsor-save', [SponsorController::class,'save'] )->name('sponsor.
 Route::get('/articles', [ArticlesController::class, 'index'])->name('artikel')->middleware('auth');;
 Route::post('/articles', [ArticlesController::class, 'store'])->name('artikel.store')->middleware('auth');
 Route::resource('banners', BannerController::class)->middleware('auth');
+Route::resource('lunnizom', LunnizomController::class)->middleware('auth');
+Route::post('catalog/foto', [FotoCatalogController::class, 'store'])->name('catalog.storeFoto');
+Route::get('catalog/foto/{id}', [FotoCatalogController::class, 'show'])->name('catalog.showFoto');
+Route::delete('catalog/foto/{id}', [FotoCatalogController::class, 'destroy'])->name('catalog.destroyFoto');

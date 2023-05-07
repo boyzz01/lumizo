@@ -10,7 +10,7 @@
                         <div
                             class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
                             <div class="d-flex align-items-center flex-wrap mr-2">
-                                <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Data Sponsor</h5>
+                                <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Catalog Laztia Land Binjai</h5>
                             </div>
 
                         </div>
@@ -20,8 +20,8 @@
                         <div class="container">
                             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <form action="{{ route('sponsor.save') }}" method="POST" enctype="multipart/form-data"
-                                    autocomplete="off">
+                                <form action="{{ route('lunnizom.store') }}" id="form1" method="POST"
+                                    enctype="multipart/form-data" autocomplete="off">
                                     {{ csrf_field() }}
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
@@ -34,18 +34,39 @@
                                             </div>
                                             <div class="modal-body">
                                                 <div class="card-body">
-                                                    <div class="form-group">
-                                                        <label>Nama Sponsor
-                                                            <span class="text-danger"></span></label>
-                                                        <input type="text" name="name" class="form-control">
-                                                    </div>
 
                                                     <div class="form-group">
-                                                        <label>Gambar
-                                                            <span class="text-danger"></span></label>
-                                                        <input type="file" name="image" id="image"
-                                                            class="form-control">
+                                                        <label for="nama">Nama Produk</label>
+                                                        <input type="text" class="form-control" id="nama"
+                                                            name="nama" placeholder="Masukkan nama produk">
                                                     </div>
+                                                    <input type="hidden" name="jenis_catalog_id" value="6">
+                                                    <div class="form-group">
+                                                        <label for="harga">Harga Produk</label>
+                                                        <input type="text" class="form-control" id="harga"
+                                                            name="harga" placeholder="Masukkan harga produk">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="harga">Deskripsi</label>
+                                                        <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3" required></textarea>
+                                                    </div>
+
+
+
+                                                    <div class="form-group">
+                                                        <div class="dropzone dropzone-default dropzone-primary dz-clickable"
+                                                            id="teszone">
+
+
+                                                            <div class="dropzone-msg dz-message needsclick">
+                                                                <h3 class="dropzone-msg-title">Drop files here or click to
+                                                                    upload.</h3>
+                                                                <span class="dropzone-msg-desc">Upload up to 5 files</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
 
                                                 </div>
 
@@ -53,7 +74,7 @@
                                             <div class="modal-footer">
                                                 <button class="btn btn-secondary" type="button"
                                                     data-dismiss="modal">Tutup</button>
-                                                <button type="Submit" name="Submit"
+                                                <button type="Submit" name="Submit" id="submitButton"
                                                     class="btn btn-primary">Simpan</button>
                                             </div>
                                         </div>
@@ -66,7 +87,7 @@
                             <div class="card card-custom">
                                 <div class="card-header flex-wrap py-5">
                                     <div class="card-title">
-                                        <h3 class="card-label">List Sponsor
+                                        <h3 class="card-label">List Catalog
                                             <span class="text-muted pt-2 font-size-sm d-block"></span>
                                         </h3>
                                     </div>
@@ -91,6 +112,8 @@
                                                 <th style="width: 5%">No</th>
                                                 <th>Gambar</th>
                                                 <th>Nama</th>
+                                                <th>Harga</th>
+                                                <th>Deskripsi</th>
                                                 <th>Aksi</th>
 
 
@@ -102,12 +125,19 @@
                                             @php
                                                 $nomor = 1;
                                             @endphp
-                                            @foreach ($sponsor as $d)
+                                            @foreach ($catalogs as $d)
                                                 <tr id="tr{{ $d->id }}">
                                                     <td style=" width:5%">{{ $nomor }}</td>
-                                                    <td><img src="{{ asset('/') }}{{ $d->image }}" height="50">
+                                                    <td>
+                                                        @foreach ($d->fotos as $foto)
+                                                            <img src="{{ asset('storage/catalog/' . $foto->path) }}"
+                                                                width="50" height="50">
+                                                        @endforeach
                                                     </td>
-                                                    <td>{{ $d->name }}</td>
+
+                                                    <td>{{ $d->nama }}</td>
+                                                    <td>{{ $d->harga }}</td>
+                                                    <td>{{ $d->deskripsi }}</td>
 
                                                     <td nowrap="nowrap">
 
