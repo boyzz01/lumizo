@@ -43,6 +43,12 @@ class ApiController extends Controller
 
     }
 
+    public function getKatalogbyJenis($jenis){
+        $katalog = Catalog::with('fotos')->where('jenis_catalog_id', $jenis)->get();
+        return response()->json($katalog);
+
+    }
+
     public function getKatalog(){
         $katalog = Catalog::with('fotos')->get();
         return response()->json($katalog);

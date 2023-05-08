@@ -21,6 +21,7 @@ Route::get('artikel', [ApiController::class, 'getArtikel']);
 Route::get('artikel/{id}', [ApiController::class, 'getDetailArtikel']);
 
 Route::get('katalog/{id}', [ApiController::class, 'getDetailKatalog']);
+Route::get('katalog/kategori/{jenis}', [ApiController::class, 'getKatalogbyJenis']);
 
 Route::get('katalog', [ApiController::class, 'getKatalog']);
 
