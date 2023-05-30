@@ -104,6 +104,15 @@ function active($currect_page)
                 </li>
 
                 <li class="menu-item <?php active(''); ?>" aria-haspopup="true">
+                    <a href="{{ route('vouchers.index') }}" class="menu-link">
+                        <span class="svg-icon menu-icon">
+                            <i class="flaticon-users"></i>
+                        </span>
+                        <span class="menu-text">Voucher</span>
+                    </a>
+                </li>
+
+                <li class="menu-item <?php active(''); ?>" aria-haspopup="true">
                     <a href="{{ route('lunnizom.index') }}" class="menu-link">
                         <span class="svg-icon menu-icon">
                             <i class="flaticon-users"></i>

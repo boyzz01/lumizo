@@ -9,6 +9,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LunnizomController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SponsorController;
+use App\Http\Controllers\VoucherController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,6 +38,10 @@ Route::post('/sponsor-save', [SponsorController::class,'save'] )->name('sponsor.
 
 Route::get('/articles', [ArticlesController::class, 'index'])->name('artikel')->middleware('admin');;
 Route::post('/articles', [ArticlesController::class, 'store'])->name('artikel.store')->middleware('admin');
+
+Route::resource('vouchers', VoucherController::class)->middleware('admin');
+
+
 Route::resource('banners', BannerController::class)->middleware('admin');
 Route::resource('lunnizom', LunnizomController::class)->middleware('admin');
 Route::post('catalog/foto', [FotoCatalogController::class, 'store'])->name('catalog.storeFoto');
