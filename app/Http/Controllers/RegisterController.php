@@ -18,7 +18,7 @@ class RegisterController extends Controller
        if($user == null ){
 
        	// session()->flash('message', 'Invalid Login attempt')
-           return redirect('/email/verification-failure');
+           return view('/email/verification-failure');
        }else{
             $user->update([
             
@@ -26,7 +26,7 @@ class RegisterController extends Controller
                 'verification_token' => ''
         
             ]);
-            return redirect('/email/verification-success');
+            return view('/email/verification-success');
        }
 
      
