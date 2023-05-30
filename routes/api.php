@@ -30,6 +30,6 @@ Route::get('katalog', [ApiController::class, 'getKatalog']);
 Route::post('/login', [ApiController::class, 'check_user']);
 Route::post('/cek_verif', [ApiController::class, 'check_verif']);
 Route::post('/register', [ApiController::class, 'register']);
-
+Route::get('users/{email}', [ApiController::class, 'showByEmail']);
 
 Route::get('/verify/{token}', [ApiController::class,'verif'] )->name('verify');
