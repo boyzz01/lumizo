@@ -82,7 +82,7 @@ class ApiController extends Controller
                 ],402);
         } else {
 
-            if ($user->email_verified == 1) {
+            if ($user->is_verified == 1) {
                 if (Auth::attempt($credential)) {
                     return response()
                         ->json([
