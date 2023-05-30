@@ -93,7 +93,7 @@ class ApiController extends Controller
             $validator = Validator::make($request->all(), [
                 'email' => 'required|email|unique:users',
                 'password' => 'required|min:8',
-                'namq' => 'required',
+                'nama' => 'required',
                 'nohp' => 'required',
             ]);
         
