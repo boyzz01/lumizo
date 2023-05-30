@@ -9,7 +9,7 @@
 
 <body>
     <h1>Email Verification Success</h1>
-    <p>Your email has been successfully verified.</p>
+    <p>Silahkan Login Melaui Aplikasi</p>
 </body>
 
 </html>
