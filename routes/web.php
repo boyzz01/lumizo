@@ -26,19 +26,19 @@ Route::get('/login', [LoginController::class,'index'] )->name('login')->middlewa
 Route::post('/login', [LoginController::class,'login'] )->name('admin.login.submit');
 Route::post('/logout', [LoginController::class,'logout'])->name('logout');
 
-Route::get('/', [DashboardController::class,'index'] )->name('home')->middleware('auth');
+Route::get('/', [DashboardController::class,'index'] )->name('home')->middleware('admin');
 
 Route::get('/verify/{token}', [RegisterController::class,'verif'] )->name('verify');
 
 
 //crud
-Route::get('/sponsor', [SponsorController::class,'index'] )->name('sponsor')->middleware('auth');
-Route::post('/sponsor-save', [SponsorController::class,'save'] )->name('sponsor.save')->middleware('auth');
+Route::get('/sponsor', [SponsorController::class,'index'] )->name('sponsor')->middleware('admin');
+Route::post('/sponsor-save', [SponsorController::class,'save'] )->name('sponsor.save')->middleware('admin');
 
-Route::get('/articles', [ArticlesController::class, 'index'])->name('artikel')->middleware('auth');;
-Route::post('/articles', [ArticlesController::class, 'store'])->name('artikel.store')->middleware('auth');
-Route::resource('banners', BannerController::class)->middleware('auth');
-Route::resource('lunnizom', LunnizomController::class)->middleware('auth');
+Route::get('/articles', [ArticlesController::class, 'index'])->name('artikel')->middleware('admin');;
+Route::post('/articles', [ArticlesController::class, 'store'])->name('artikel.store')->middleware('admin');
+Route::resource('banners', BannerController::class)->middleware('admin');
+Route::resource('lunnizom', LunnizomController::class)->middleware('admin');
 Route::post('catalog/foto', [FotoCatalogController::class, 'store'])->name('catalog.storeFoto');
 Route::get('catalog/foto/{id}', [FotoCatalogController::class, 'show'])->name('catalog.showFoto');
 Route::delete('catalog/foto/{id}', [FotoCatalogController::class, 'destroy'])->name('catalog.destroyFoto');

@@ -33,17 +33,17 @@ class LoginController extends Controller
 
         if (Auth::guard('admin')->attempt($credential)) {
 
-            $request->session()->regenerate(); //me-generate ulang session untuk menghindari hacking
+                $request->session()->regenerate(); //me-generate ulang session untuk menghindari hacking
 
-            return redirect()->intended('/');
+                return redirect()->intended('/');
         }
 
-        return redirect()->back()->withInput($request->only('email', 'remember'))->with('error', 'Wrong Username or Password.');
+      //  return redirect()->back()->withInput($request->only('email', 'remember'))->with('error', 'Wrong Username or Password.');
     }
 
     public function logout(Request $request)
     {
-        Auth::logout();
+        Auth::guard('admin')->logout();
 
         $request->session()->invalidate();
 
