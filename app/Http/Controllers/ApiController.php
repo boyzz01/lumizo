@@ -67,13 +67,42 @@ class ApiController extends Controller
     public function check_user(Request $request)
     {
 
-        $credentials = $request->only('email', 'password');
+        $credential = $request->validate([
+            'email' => 'required',
+            'password' => 'required',
+        ]);
 
-        if (Auth::attempt($credentials)) {
-            $user = Auth::user();
-            return response()->json(['success' => true, 'user' => $user], 200);
+        $user = User::where('email', $request->email)->first();
+
+        if ($user == null) {
+            return response()
+                ->json([
+                    'success' => false,
+                    'message' => "Email Belum Terdaftar"
+                ],402);
         } else {
-            return response()->json(['success' => false, 'message' => 'Invalid credentials'], 401);
+
+            if ($user->email_verified == 1) {
+                if (Auth::attempt($credential)) {
+                    return response()
+                        ->json([
+                            'success' => true,
+                            'message' => $user
+                        ],200);
+                } else {
+                    return response()
+                        ->json([
+                            'success' => false,
+                            'message' => "Username Atau Password Salah"
+                        ],402);
+                }
+            } else {
+                return response()
+                    ->json([
+                        'success' => false,
+                        'message' => "Email Belum Terverifikasi"
+                    ],402);
+            }
         }
     }
 
