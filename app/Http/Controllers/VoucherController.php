@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Voucher;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
 class VoucherController extends Controller
@@ -42,13 +43,19 @@ class VoucherController extends Controller
         $voucher = new Voucher();
         $voucher->nama = $request->name;
     
-        if($request->hasFile('photo')) {
-            $photo = $request->file('photo');
-            $filename = time() . '.' . $photo->getClientOriginalExtension();
-            $photo->storeAs('public/voucher', $filename);
+        if ($request->hasFile('photo')) {
+            $image = $request->file('photo');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            
+            // Resize the image
+            $resizedImage = Image::make($image)->fit(800, 320);
+            
+            // Save the resized image to the storage disk
+            Storage::disk('public')->put('voucher/' . $filename, $resizedImage->encode());
+            
+            // Set the image filename to the voucher model
             $voucher->image = $filename;
         }
-    
         $voucher->save();
        // echo  $voucher->image."a";
         return redirect()->back()->with('success', 'Data berhasil disimpan');
