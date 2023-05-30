@@ -15,6 +15,8 @@ class User extends Model
         'email',
         'password',
         'nohp',
+        'is_verified',
+        'email_verified_at',
         'verification_token',
     ];
 
@@ -23,7 +25,5 @@ class User extends Model
         'remember_token',
     ];
 
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+  
 }

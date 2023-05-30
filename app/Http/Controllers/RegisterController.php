@@ -21,7 +21,7 @@ class RegisterController extends Controller
            return view('/email/verification-failure');
        }else{
             $user->update([
-            
+                'is_verified' => 1,
                 'email_verified_at' => Carbon::now(),
                 'verification_token' => ''
         
