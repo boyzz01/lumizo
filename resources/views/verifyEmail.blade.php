@@ -3,9 +3,10 @@
 <body>
 
     <p>Dear {{ $user->name }}</p>
-    <p>Akun Anda Berhasil Dibuat, Berikut Kode Aktivasi Anda</p>
-    <p style="font-size: 30px;">{{ $user->email_token }}</p>
+    <p>Akun Anda Berhasil Dibuat, Mohon aktivasi menggunakan link dibawah ini</p>
+    <p><a href="{{ route('verify', $user->verification_token) }}">
 
+        </a></p>
     <p>Thanks</p>
 
 </body>
