@@ -29,4 +29,4 @@ Route::get('katalog', [ApiController::class, 'getKatalog']);
 
 Route::post('/login', [ApiController::class, 'check_user']);
 Route::post('/cek_verif', [ApiController::class, 'check_verif']);
-Route::post('/add_user', [ApiController::class, 'addUser']);
+Route::post('/register', [ApiController::class, 'addUser']);
