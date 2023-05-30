@@ -21,6 +21,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
 class ApiController extends Controller
@@ -62,6 +63,65 @@ class ApiController extends Controller
     public function getDetailArtikel($id){
         return response()->json(Article::find($id));
     }
+
+    public function check_user(Request $request)
+    {
+
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+            return response()->json(['success' => true, 'user' => $user], 200);
+        } else {
+            return response()->json(['success' => false, 'message' => 'Invalid credentials'], 401);
+        }
+    }
+
+    public function register(Request $request)
+    {
+
+        $emailExists = User::where('email', $request->email)->exists();
+
+        if ($emailExists) {
+            return response()
+            ->json([
+                'success' => false,
+                'message' => "Email Sudah Terdaftar"
+            ]);
+        }else{
+           
+            $validator = Validator::make($request->all(), [
+                'email' => 'required|email|unique:users',
+                'password' => 'required|min:8',
+                'nama' => 'required',
+                'nohp' => 'required',
+            ]);
+        
+            if ($validator->fails()) {
+                return response()->json(['success' => false, 'errors' => $validator->errors()], 422);
+            }
+
+            $user = User::create([
+                'email' => $request->email,
+                'password' => bcrypt($request->password),
+                'nama' => $request->nama,
+                'nohp' => $request->nohp,
+                'verification_token' =>Str::random(40)
+            ]);
+    
+            $user->save();
+    
+            Mail::to($user->email)->send(new VerificationEmail($user));
+    
+            // Kirim email verifikasi ke pengguna
+    
+            return response()->json(['success' => true, 'message' => 'Registration successful. Please check your email for verification.'], 200);
+        }
+
+       
+    }
+
+  
 
 
    
