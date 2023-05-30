@@ -14,6 +14,7 @@ use App\Models\Produk;
 use App\Models\Sponsor;
 use App\Models\Umkm;
 use App\Models\User;
+use App\Models\Voucher;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Database\QueryException;
@@ -58,6 +59,10 @@ class ApiController extends Controller
 
     public function getArtikel(){
         return response()->json(Article::all());
+    }
+
+    public function vouchers(){
+        return response()->json(Voucher::all());
     }
 
     public function getDetailArtikel($id){

@@ -33,3 +33,4 @@ Route::post('/register', [ApiController::class, 'register']);
 Route::get('users/{email}', [ApiController::class, 'showByEmail']);
 
 Route::get('/verify/{token}', [ApiController::class,'verif'] )->name('verify');
+Route::get('/vouchers', [ApiController::class, 'vouchers']);
