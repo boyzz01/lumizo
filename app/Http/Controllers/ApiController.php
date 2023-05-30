@@ -83,7 +83,7 @@ class ApiController extends Controller
         } else {
 
             if ($user->is_verified == 1) {
-                if (Auth::guard('anggota')->attempt($credential)) {
+                if (Auth::attempt($credential)) {
                     return response()
                         ->json([
                             'success' => true,
