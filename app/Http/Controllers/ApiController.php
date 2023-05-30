@@ -87,7 +87,7 @@ class ApiController extends Controller
             ->json([
                 'success' => false,
                 'message' => "Email Sudah Terdaftar"
-            ]);
+            ], 422);
         }else{
            
             $validator = Validator::make($request->all(), [
