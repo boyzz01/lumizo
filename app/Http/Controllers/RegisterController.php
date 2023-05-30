@@ -13,23 +13,23 @@ class RegisterController extends Controller
     {
     
 
-       $user = User::where('email_token',$token)->first();
+       $user = User::where('verification_token',$token)->first();
 
        if($user == null ){
 
-       	// session()->flash('message', 'Invalid Login attempt');
-
-       
-
+       	// session()->flash('message', 'Invalid Login attempt')
+           return redirect('/email/verification-failure');
+       }else{
+            $user->update([
+            
+                'email_verified_at' => Carbon::now(),
+                'verification_token' => ''
+        
+            ]);
+            return redirect('/email/verification-success');
        }
 
-       $user->update([
-        
-        'email_verified' => 1,
-        'email_verified_at' => Carbon::now(),
-        'email_token' => ''
-
-       ]);
+     
        
        //	session()->flash('message', 'Your account is activated, you can log in now');
 
