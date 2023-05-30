@@ -106,6 +106,17 @@ class ApiController extends Controller
         }
     }
 
+    public function showByEmail($email)
+    {
+        $user = User::where('email', $email)->first();
+
+        if ($user) {
+            return response()->json(['success' => true, 'data' => $user], 200);
+        } else {
+            return response()->json(['success' => false, 'message' => 'User not found'], 404);
+        }
+    }
+
     public function register(Request $request)
     {
 
