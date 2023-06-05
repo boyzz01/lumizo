@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Banner;
+use App\Models\Sponsor;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
-class BannerController extends Controller
+class SponsorsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,8 @@ class BannerController extends Controller
      */
     public function index()
     {
-        //
-        $data = Banner::all();
-        return view('banner',['data'=>$data]);
+        $sponsor = Sponsor::all();
+        return view('sponsor',['sponsor'=>$sponsor]);
     }
 
     /**
@@ -38,26 +37,24 @@ class BannerController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $request->validate([
-            'title' => 'required',
-            'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'name' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:1024',
         ]);
 
-        $banner = new Banner();
-        $banner->title = $request->title;
+        $sponsor = new Sponsor();
+        $sponsor->name = $request->name;
     
-        if ($request->hasFile('photo')) {
-            $image = $request->file('photo');
-            $name = time().'.'.$image->getClientOriginalExtension();
-            $destinationPath = public_path('/images');
-            $image->move($destinationPath, $name);
-            $banner->photo = $name;
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $path = public_path('uploads/sponsors/' . $filename);
+            Image::make($image->getRealPath())->resize(300, 300)->save($path);
+            $sponsor->image = 'uploads/sponsors/' . $filename;
         }
     
-        $banner->save();
+        $sponsor->save();
         return redirect()->back()->with('success', 'Data berhasil disimpan');
-    
     }
 
     /**
@@ -68,9 +65,8 @@ class BannerController extends Controller
      */
     public function show($id)
     {
-        //
-        $data = Banner::find($id);
-        return response()->json($data);
+        $sponsor = Sponsor::find($id);
+        return response()->json($sponsor);
     }
 
     /**
@@ -81,9 +77,8 @@ class BannerController extends Controller
      */
     public function edit($id)
     {
-        //
-        $data = Banner::find($id);
-        return response()->json($data);
+        $sponsor = Sponsor::find($id);
+        return response()->json($sponsor);
     }
 
     /**
@@ -95,22 +90,19 @@ class BannerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-
-       
-
-        $banner = Banner::find($id);
-        $banner->title = $request->title;
     
-        if ($request->hasFile('photo')) {
-            $image = $request->file('photo');
-            $name = time().'.'.$image->getClientOriginalExtension();
-            $destinationPath = public_path('/images');
-            $image->move($destinationPath, $name);
-            $banner->photo = $name;
+        $sponsor = Sponsor::find($id);
+        $sponsor->name = $request->name;
+    
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $path = public_path('uploads/sponsors/' . $filename);
+            Image::make($image->getRealPath())->resize(300, 300)->save($path);
+            $sponsor->image = 'uploads/sponsors/' . $filename;
         }
     
-        $banner->save();
+        $sponsor->save();
         return redirect()->back()->with('success', 'Data berhasil disimpan');
     }
 
@@ -122,16 +114,19 @@ class BannerController extends Controller
      */
     public function destroy($id)
     {
-        //
-        $sponsor = Banner::findOrFail($id);
+        $sponsor = Sponsor::findOrFail($id);
         
         // Hapus file gambar jika ada
         if (!empty($sponsor->image)) {
-            Storage::delete('/images' . $sponsor->photo);
+            $imagePath = public_path('uploads/sponsors/' . $sponsor->image);
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
         }
         
         $sponsor->delete();
 
         return redirect()->back()->with('success', 'Data berhasil dihapus');
     }
+
 }

@@ -88,99 +88,28 @@
     </div>
     </div>
 
-
+    @yield('scripts')
     <script></script>
 
 
-    <script>
-        $(function() {
 
-            const form1 = document.querySelector('#form1');
-            const submitButton = document.querySelector('#submitButton');
-
-            var fileInput = document.createElement("input");
-            fileInput.type = "file";
-            fileInput.name = "fotos[]";
-            fileInput.multiple = true;
-            form1.appendChild(fileInput);
-
-            var fotoList = [];
-
-            submitButton.addEventListener('click', function(event) {
-                event.preventDefault(); // mencegah form disubmit secara otomatis
-                // // cek apakah setiap file yang dipilih telah diunggah
-                var dataTransfer = new DataTransfer();
-                if (fotoList.length > 0) {
-                    // submit form secara manual
-
-                    fotoList.forEach(function(file) {
-                        dataTransfer.items.add(file);
-                    });
-                    fileInput.files = dataTransfer.files;
-                    form1.submit();
-                } else {
-                    alert('Harap pilih file terlebih dahulu');
-                }
-            });
-
-
-            var myDropzone = new Dropzone("#teszone", {
-                url: "{{ route('catalog.storeFoto') }}",
-                maxFilesize: 5, // MB
-                maxFiles: 5,
-                acceptedFiles: ".jpg,.jpeg,.png,.gif",
-                dictDefaultMessage: "Drag and drop foto here or click to upload",
-                dictRemoveFile: "Remove",
-                addRemoveLinks: true,
-                headers: {
-                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
-                },
-
-                init: function() {
-                    this.on("addedfile", function(file) {
-                        // tambahkan file ke dalam variabel fotos
-                        fotoList.push(file);
-                    });
-                    this.on("queuecomplete", function() {
-
-                    });
-                    this.on("success", function(file, response) {
-
-                    });
-                    this.on("removedfile", function(file) {
-                        // hapus file dari dalam variabel fotos
-                        var index = fotoList.indexOf(file);
-                        if (index !== -1) {
-                            fotoList.splice(index, 1);
-                        }
-                    });
-
-
-                }
-            });
-
-
-            $('.kt_datatable2').DataTable({
-                responsive: true,
-                // Pagination settings
-                dom: `<'row'<'col-sm-6 text-left'f><'col-sm-6 text-right'B>>
-                <'row'<'col-sm-12'tr>>
-                <'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 dataTables_pager'lp>>`,
-
-                buttons: [
-                    'print',
-                    'copyHtml5',
-                    'excelHtml5',
-                    'csvHtml5',
-                    'pdfHtml5',
-                ]
-            });
-
-
-        })
-    </script>
 
     <script>
+        $('.kt_datatable2').DataTable({
+            responsive: true,
+            // Pagination settings
+            dom: `<'row'<'col-sm-6 text-left'f><'col-sm-6 text-right'B>>
+                            <'row'<'col-sm-12'tr>>
+                            <'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 dataTables_pager'lp>>`,
+
+            buttons: [
+                'print',
+                'copyHtml5',
+                'excelHtml5',
+                'csvHtml5',
+                'pdfHtml5',
+            ]
+        });
         var KTAppSettings = {
             "breakpoints": {
                 "sm": 576,

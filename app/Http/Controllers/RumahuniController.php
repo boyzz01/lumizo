@@ -7,10 +7,9 @@ use App\Models\FotoCatalog;
 use App\Models\JenisCatalog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-
-class LunnizomController extends Controller
+class RumahuniController extends Controller
 {
-    /**
+   /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -18,10 +17,9 @@ class LunnizomController extends Controller
     public function index()
     {
         //
-        $jenisCatalogs = JenisCatalog::where('id', '>=', 6)->get();
-        $jenisCatalogIds = $jenisCatalogs->pluck('id');
-        $catalogs = Catalog::whereIn('jenis_catalog_id', $jenisCatalogIds)->with('fotos')->get();
-        return view('lunnizom',compact('catalogs', 'jenisCatalogs'));
+        $jenisCatalogs = JenisCatalog::where('id', '=', 3)->first();
+        $catalogs = Catalog::where('jenis_catalog_id', $jenisCatalogs->id)->with('fotos')->get();
+        return view('rumahuni',compact('catalogs', 'jenisCatalogs'));
     }
 
     /**

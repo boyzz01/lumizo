@@ -76,48 +76,100 @@ function active($currect_page)
                     <h4 class="menu-text">Master Data</h4>
                     <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
                 </li>
-                <li class="menu-item <?php active(''); ?>" aria-haspopup="true">
-                    <a href="{{ route('sponsor') }}" class="menu-link">
+                <li class="menu-item <?php active('sponsor.index'); ?>" aria-haspopup="true">
+                    <a href="{{ route('sponsor.index') }}" class="menu-link">
                         <span class="svg-icon menu-icon">
-                            <i class="flaticon-users"></i>
+                            <i class="fas fa-handshake"></i>
                         </span>
                         <span class="menu-text">Sponsor</span>
                     </a>
                 </li>
 
-                <li class="menu-item <?php active(''); ?>" aria-haspopup="true">
-                    <a href="{{ route('artikel') }}" class="menu-link">
+                <li class="menu-item <?php active('articles.index'); ?>" aria-haspopup="true">
+                    <a href="{{ route('articles.index') }}" class="menu-link">
                         <span class="svg-icon menu-icon">
-                            <i class="flaticon-users"></i>
+                            <i class="fas fa-newspaper"></i>
                         </span>
                         <span class="menu-text">Artikel</span>
                     </a>
                 </li>
 
-                <li class="menu-item <?php active(''); ?>" aria-haspopup="true">
+                <li class="menu-item <?php active('banners.index'); ?>" aria-haspopup="true">
                     <a href="{{ route('banners.index') }}" class="menu-link">
                         <span class="svg-icon menu-icon">
-                            <i class="flaticon-users"></i>
+                            <i class="fas fa-flag"></i>
                         </span>
                         <span class="menu-text">Banner</span>
                     </a>
                 </li>
 
-                <li class="menu-item <?php active(''); ?>" aria-haspopup="true">
+                <li class="menu-item <?php active('deals.index'); ?>" aria-haspopup="true">
+                    <a href="{{ route('deals.index') }}" class="menu-link">
+                        <span class="svg-icon menu-icon">
+                            <i class="fas fa-tags"></i>
+                        </span>
+                        <span class="menu-text">Best Deal</span>
+                    </a>
+                </li>
+
+                <li class="menu-item <?php active('vouchers.index'); ?>" aria-haspopup="true">
                     <a href="{{ route('vouchers.index') }}" class="menu-link">
                         <span class="svg-icon menu-icon">
-                            <i class="flaticon-users"></i>
+                            <i class="fas fa-ticket-alt"></i>
                         </span>
                         <span class="menu-text">Voucher</span>
                     </a>
                 </li>
 
-                <li class="menu-item <?php active(''); ?>" aria-haspopup="true">
+
+
+                <li class="menu-item <?php active('lunnizom.index'); ?>" aria-haspopup="true">
                     <a href="{{ route('lunnizom.index') }}" class="menu-link">
                         <span class="svg-icon menu-icon">
-                            <i class="flaticon-users"></i>
+                            <img src="{{ asset('assets/img/properti.png') }} " alt="Gambar Icon"
+                                style="width: 24px; height: 24px;">
                         </span>
-                        <span class="menu-text">Lunnizom</span>
+                        <span class="menu-text">Lunnizom Indo Properti</span>
+                    </a>
+                </li>
+
+                <li class="menu-item <?php active('property.index'); ?>" aria-haspopup="true">
+                    <a href="{{ route('property.index') }}" class="menu-link">
+                        <span class="svg-icon menu-icon">
+                            <img src="{{ asset('assets/img/management.png') }} " alt="Gambar Icon"
+                                style="width: 24px; height: 24px;">
+                        </span>
+                        <span class="menu-text">Property Management</span>
+                    </a>
+                </li>
+
+                <li class="menu-item <?php active('rumahuni.index'); ?>" aria-haspopup="true">
+                    <a href="{{ route('rumahuni.index') }}" class="menu-link">
+                        <span class="svg-icon menu-icon">
+                            <img src="{{ asset('assets/img/rumahuni.png') }} " alt="Gambar Icon"
+                                style="width: 24px; height: 24px;">
+                        </span>
+                        <span class="menu-text">Rumahuni</span>
+                    </a>
+                </li>
+
+                <li class="menu-item <?php active('tataruang.index'); ?>" aria-haspopup="true">
+                    <a href="{{ route('tataruang.index') }}" class="menu-link">
+                        <span class="svg-icon menu-icon">
+                            <img src="{{ asset('assets/img/tataruang.png') }} " alt="Gambar Icon"
+                                style="width: 24px; height: 24px;">
+                        </span>
+                        <span class="menu-text">Tataruang</span>
+                    </a>
+                </li>
+
+                <li class="menu-item <?php active('legalin.index'); ?>" aria-haspopup="true">
+                    <a href="{{ route('legalin.index') }}" class="menu-link">
+                        <span class="svg-icon menu-icon">
+                            <img src="{{ asset('assets/img/legalin.png') }} " alt="Gambar Icon"
+                                style="width: 24px; height: 24px;">
+                        </span>
+                        <span class="menu-text">Legalin</span>
                     </a>
                 </li>
 

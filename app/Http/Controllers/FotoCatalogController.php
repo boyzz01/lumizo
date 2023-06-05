@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Catalog;
 use App\Models\FotoCatalog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -37,12 +38,34 @@ class FotoCatalogController extends Controller
         return response()->json($data);
     }
 
+    public function getCatalogFotos($id)
+    {
+        $catalog = Catalog::findOrFail($id);
+        $fotos = $catalog->fotos()->select('id', 'path')->get();
+
+        $response = [];
+        foreach ($fotos as $foto) {
+            $response[] = [
+                'id' => $foto->id,
+                'path' => $foto->path,
+                'size' => filesize(public_path('storage/catalog/' . $foto->path)),
+                'name' => basename($foto->path),
+            ];
+        }
+
+        return response()->json([
+            'fotos' => $response
+        ]);
+    }
+
+    
+
     public function destroy($id)
     {
-        // $foto = FotoCatalog::findOrFail($id);
-        // Storage::delete($foto->path);
-        // $foto->delete();
+        $foto = FotoCatalog::findOrFail($id);
+        Storage::delete(public_path('storage/catalog/' . $foto->path));
+        $foto->delete();
 
-        // return response()->json(['success' => true]);
+        return response()->json(['success' => true]);
     }
 }

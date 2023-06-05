@@ -10,7 +10,7 @@
                         <div
                             class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
                             <div class="d-flex align-items-center flex-wrap mr-2">
-                                <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Data Banner</h5>
+                                <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Data Best Deal</h5>
                             </div>
 
                         </div>
@@ -24,7 +24,7 @@
                         <div class="container">
                             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <form action="{{ route('banners.store') }}" method="POST" enctype="multipart/form-data"
+                                <form action="{{ route('deals.store') }}" method="POST" enctype="multipart/form-data"
                                     autocomplete="off">
                                     {{ csrf_field() }}
                                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -46,7 +46,7 @@
 
 
                                                     <div class="form-group">
-                                                        <label>Gambar Banner
+                                                        <label>Gambar Deal
                                                             <span class="text-danger"></span></label>
                                                         <input type="file" name="photo" id="photo"
                                                             class="form-control">
@@ -72,7 +72,7 @@
                             <div class="card card-custom">
                                 <div class="card-header flex-wrap py-5">
                                     <div class="card-title">
-                                        <h3 class="card-label">List Banner
+                                        <h3 class="card-label">List Best Deal
                                             <span class="text-muted pt-2 font-size-sm d-block"></span>
                                         </h3>
                                     </div>
@@ -118,8 +118,7 @@
 
                                                     <td nowrap="nowrap">
 
-                                                        <form action="{{ route('banners.destroy', $d->id) }}"
-                                                            method="POST">
+                                                        <form action="{{ route('deals.destroy', $d->id) }}" method="POST">
                                                             <a href="javascript:;"
                                                                 class="btn btn-sm btn-info btn-icon edit_btn"
                                                                 id="{{ $d->id }}" title=" Edit Data">
@@ -186,7 +185,7 @@
 
 
                                         <div class="form-group">
-                                            <label>Gambar Banner
+                                            <label>Gambar Deal
                                                 <span class="text-danger"></span></label>
                                             <input type="file" name="photo" id="photo" class="form-control">
                                         </div>
@@ -208,7 +207,7 @@
                         // Menangkap event klik tombol edit
                         $('.edit_btn').click(function() {
                             var sponsorId = $(this).attr('id');
-                            var url = '{{ route('banners.edit', ':id') }}';
+                            var url = '{{ route('deals.edit', ':id') }}';
                             url = url.replace(':id', sponsorId);
 
                             // Mengambil data sponsor berdasarkan ID menggunakan AJAX
@@ -218,7 +217,7 @@
                                 success: function(response) {
                                     // Mengisi nilai pada form edit
 
-                                    $('#editForm').attr('action', '{{ route('banners.update', ':id') }}'
+                                    $('#editForm').attr('action', '{{ route('deals.update', ':id') }}'
                                         .replace(':id', sponsorId));
                                     $('#editTitle').val(response.title);
                                     $('#editModal').modal('show');

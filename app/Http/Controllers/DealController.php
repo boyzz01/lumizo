@@ -2,22 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Banner;
+use App\Models\Deal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class BannerController extends Controller
+class DealController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         //
-        $data = Banner::all();
-        return view('banner',['data'=>$data]);
+        $data = Deal::all();
+        return view('deal',['data'=>$data]);
     }
 
     /**
@@ -44,18 +39,18 @@ class BannerController extends Controller
             'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        $banner = new Banner();
-        $banner->title = $request->title;
+        $deal = new Deal();
+        $deal->title = $request->title;
     
         if ($request->hasFile('photo')) {
             $image = $request->file('photo');
             $name = time().'.'.$image->getClientOriginalExtension();
             $destinationPath = public_path('/images');
             $image->move($destinationPath, $name);
-            $banner->photo = $name;
+            $deal->photo = $name;
         }
     
-        $banner->save();
+        $deal->save();
         return redirect()->back()->with('success', 'Data berhasil disimpan');
     
     }
@@ -69,7 +64,7 @@ class BannerController extends Controller
     public function show($id)
     {
         //
-        $data = Banner::find($id);
+        $data = Deal::find($id);
         return response()->json($data);
     }
 
@@ -82,7 +77,7 @@ class BannerController extends Controller
     public function edit($id)
     {
         //
-        $data = Banner::find($id);
+        $data = Deal::find($id);
         return response()->json($data);
     }
 
@@ -99,18 +94,18 @@ class BannerController extends Controller
 
        
 
-        $banner = Banner::find($id);
-        $banner->title = $request->title;
+        $deal = Deal::find($id);
+        $deal->title = $request->title;
     
         if ($request->hasFile('photo')) {
             $image = $request->file('photo');
             $name = time().'.'.$image->getClientOriginalExtension();
             $destinationPath = public_path('/images');
             $image->move($destinationPath, $name);
-            $banner->photo = $name;
+            $deal->photo = $name;
         }
     
-        $banner->save();
+        $deal->save();
         return redirect()->back()->with('success', 'Data berhasil disimpan');
     }
 
@@ -123,7 +118,7 @@ class BannerController extends Controller
     public function destroy($id)
     {
         //
-        $sponsor = Banner::findOrFail($id);
+        $sponsor = Deal::findOrFail($id);
         
         // Hapus file gambar jika ada
         if (!empty($sponsor->image)) {

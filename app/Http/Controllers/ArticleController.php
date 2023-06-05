@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Banner;
+use App\Models\Article;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class BannerController extends Controller
+class ArticleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,8 @@ class BannerController extends Controller
      */
     public function index()
     {
-        //
-        $data = Banner::all();
-        return view('banner',['data'=>$data]);
+        $articles = Article::all();
+        return view('article', ['articles' => $articles]);
     }
 
     /**
@@ -38,26 +37,18 @@ class BannerController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $request->validate([
-            'title' => 'required',
-            'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
-
-        $banner = new Banner();
-        $banner->title = $request->title;
-    
-        if ($request->hasFile('photo')) {
-            $image = $request->file('photo');
-            $name = time().'.'.$image->getClientOriginalExtension();
-            $destinationPath = public_path('/images');
-            $image->move($destinationPath, $name);
-            $banner->photo = $name;
+        $article = new Article();
+        $article->title = $request->title;
+        $article->content = nl2br($request->content);
+        if($request->hasFile('photo')) {
+            $photo = $request->file('photo');
+            $filename = time() . '.' . $photo->getClientOriginalExtension();
+            $photo->storeAs('public/photos', $filename);
+            $article->photo = $filename;
         }
-    
-        $banner->save();
+
+        $article->save();
         return redirect()->back()->with('success', 'Data berhasil disimpan');
-    
     }
 
     /**
@@ -69,7 +60,7 @@ class BannerController extends Controller
     public function show($id)
     {
         //
-        $data = Banner::find($id);
+        $data = Article::find($id);
         return response()->json($data);
     }
 
@@ -82,7 +73,7 @@ class BannerController extends Controller
     public function edit($id)
     {
         //
-        $data = Banner::find($id);
+        $data = Article::find($id);
         return response()->json($data);
     }
 
@@ -96,21 +87,19 @@ class BannerController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $article = Article::find($id);
+        $article->title = $request->title;
+        $article->content = nl2br($request->content);
+        if($request->hasFile('photo')) {
 
-       
-
-        $banner = Banner::find($id);
-        $banner->title = $request->title;
     
-        if ($request->hasFile('photo')) {
-            $image = $request->file('photo');
-            $name = time().'.'.$image->getClientOriginalExtension();
-            $destinationPath = public_path('/images');
-            $image->move($destinationPath, $name);
-            $banner->photo = $name;
+            $photo = $request->file('photo');
+            $filename = time() . '.' . $photo->getClientOriginalExtension();
+            $photo->storeAs('public/photos', $filename);
+            $article->photo = $filename;
         }
-    
-        $banner->save();
+
+        $article->save();
         return redirect()->back()->with('success', 'Data berhasil disimpan');
     }
 
@@ -123,11 +112,11 @@ class BannerController extends Controller
     public function destroy($id)
     {
         //
-        $sponsor = Banner::findOrFail($id);
+        $sponsor = Article::findOrFail($id);
         
         // Hapus file gambar jika ada
         if (!empty($sponsor->image)) {
-            Storage::delete('/images' . $sponsor->photo);
+            Storage::delete('public/photos/' . $sponsor->photo);
         }
         
         $sponsor->delete();

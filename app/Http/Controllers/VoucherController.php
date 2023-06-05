@@ -42,7 +42,7 @@ class VoucherController extends Controller
 
         $voucher = new Voucher();
         $voucher->nama = $request->name;
-    
+
         if ($request->hasFile('photo')) {
             $image = $request->file('photo');
             $filename = time() . '.' . $image->getClientOriginalExtension();
@@ -70,6 +70,8 @@ class VoucherController extends Controller
     public function show($id)
     {
         //
+        $data = Voucher::find($id);
+        return response()->json($data);
     }
 
     /**
@@ -81,6 +83,8 @@ class VoucherController extends Controller
     public function edit($id)
     {
         //
+        $data = Voucher::find($id);
+        return response()->json($data);
     }
 
     /**
@@ -93,6 +97,25 @@ class VoucherController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $voucher = Voucher::find($id);
+        $voucher->nama = $request->name;
+        $voucher->isactive = $request->isactive;
+        if ($request->hasFile('photo')) {
+            $image = $request->file('photo');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            
+            // Resize the image
+            $resizedImage = Image::make($image)->fit(800, 320);
+            
+            // Save the resized image to the storage disk
+            Storage::disk('public')->put('voucher/' . $filename, $resizedImage->encode());
+            
+            // Set the image filename to the voucher model
+            $voucher->image = $filename;
+        }
+        $voucher->save();
+       // echo  $voucher->image."a";
+        return redirect()->back()->with('success', 'Data berhasil disimpan');
     }
 
     /**
@@ -104,5 +127,15 @@ class VoucherController extends Controller
     public function destroy($id)
     {
         //
+        $data = Voucher::findOrFail($id);
+        
+        // Hapus file gambar jika ada
+        if (!empty($data->image)) {
+            Storage::disk('public')->delete('voucher/' . $data->image);
+        }
+        
+        $data->delete();
+
+        return redirect()->back()->with('success', 'Data berhasil dihapus');
     }
 }

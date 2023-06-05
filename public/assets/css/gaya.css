@@ -1,3 +1,10 @@
 #kt_header_mobile > a:nth-child(2) > img:nth-child(1) {
     max-width: 30px;
     }
+
+    .dropzone .dz-preview .dz-image img {
+        object-fit: cover; /* Mengisi kotak dengan gambar dan menjaga aspek rasio */
+        object-position: center; /* Menempatkan gambar di tengah kotak */
+        width: 100%;
+        height: 100%;
+      }

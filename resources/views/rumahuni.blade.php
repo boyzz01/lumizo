@@ -10,7 +10,7 @@
                         <div
                             class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
                             <div class="d-flex align-items-center flex-wrap mr-2">
-                                <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Catalog Properti</h5>
+                                <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Catalog Rumahuni</h5>
                             </div>
 
                         </div>
@@ -55,16 +55,8 @@
                                                         <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3" required></textarea>
                                                     </div>
 
-                                                    <div class="form-group">
-                                                        <label for="jenis_catalog">Jenis Perumahan</label>
-                                                        <select class="form-control" id="jenis_catalog"
-                                                            name="jenis_catalog_id">
-                                                            @foreach ($jenisCatalogs as $jenisCatalog)
-                                                                <option value="{{ $jenisCatalog->id }}">
-                                                                    {{ $jenisCatalog->nama }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
+                                                    <input type="hidden" name="jenis_catalog_id"
+                                                        value="{{ $jenisCatalogs->id }}">
 
                                                     <div class="form-group">
                                                         <div class="dropzone dropzone-default dropzone-primary dz-clickable"
@@ -127,7 +119,7 @@
                                                 <th>Nama</th>
                                                 <th>Harga</th>
                                                 <th>Deskripsi</th>
-                                                <th>Jenis Perumahan</th>
+
                                                 <th>Aksi</th>
 
 
@@ -152,17 +144,7 @@
                                                     <td>{{ $d->nama }}</td>
                                                     <td>{{ $d->harga }}</td>
                                                     <td>{!! $d->deskripsi !!}</td>
-                                                    <td>
-                                                        @if ($d->jenis_catalog_id == 6)
-                                                            Laztia Land Binjai
-                                                        @elseif ($d->jenis_catalog_id == 7)
-                                                            Zevira Residence
-                                                        @elseif ($d->jenis_catalog_id == 8)
-                                                            Pesona Khayangan Delitua
-                                                        @else
-                                                            {{-- Tambahkan logika untuk nilai lainnya di sini --}}
-                                                        @endif
-                                                    </td>
+
 
 
                                                     <td nowrap="nowrap">
@@ -241,16 +223,7 @@
                                             <label for="editDeskripsi">Deskripsi</label>
                                             <textarea class="form-control" id="editDeskripsi" name="deskripsi" rows="3" required></textarea>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="editJenisCatalog">Jenis Perumahan</label>
-                                            <select class="form-control" id="editJenisCatalog" name="jenis_catalog_id"
-                                                required>
-                                                @foreach ($jenisCatalogs as $jenisCatalog)
-                                                    <option value="{{ $jenisCatalog->id }}">{{ $jenisCatalog->nama }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
+                                        <input type="hidden" name="jenis_catalog_id" value="{{ $jenisCatalogs->id }}">
                                         <div class="form-group">
                                             <div class="dropzone dropzone-default dropzone-primary dz-clickable"
                                                 id="editTeszone">
