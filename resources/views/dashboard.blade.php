@@ -48,8 +48,8 @@
                                                 <th>Nama</th>
                                                 <th>Email</th>
                                                 <th>No Hp</th>
-
-                                                <th>Aksi</th>
+                                                {{-- 
+                                                <th>Aksi</th> --}}
 
 
                                             </tr>
@@ -68,7 +68,7 @@
                                                     <td>{{ $d->email }}</td>
                                                     <td>{{ $d->nohp }}</td>
 
-                                                    <td nowrap="nowrap">
+                                                    {{-- <td nowrap="nowrap">
 
 
                                                         <a href="javascript:;" class="btn btn-sm btn-info btn-icon edit_btn"
@@ -85,7 +85,7 @@
                                                             </i>
                                                         </button>
 
-                                                    </td>
+                                                    </td> --}}
 
 
 
