@@ -294,7 +294,6 @@
 
                                     var cleanedData = response.deskripsi.replace(/<br\s*[\/]?>/gi, '');
                                     $('#editDeskripsi').val(cleanedData);
-                                    console.log(cleanedData)
                                     $('#editJenisCatalog').val(response.jenis_catalog_id);
 
                                     $.ajax({
