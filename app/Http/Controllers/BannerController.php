@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Banner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class BannerController extends Controller
 {
@@ -49,9 +50,10 @@ class BannerController extends Controller
     
         if ($request->hasFile('photo')) {
             $image = $request->file('photo');
-            $name = time().'.'.$image->getClientOriginalExtension();
+            $compressedImage = Image::make($image)->encode('jpg', 75);
+            $name = time().'.'.$compressedImage->getClientOriginalExtension();
             $destinationPath = public_path('/images');
-            $image->move($destinationPath, $name);
+            $compressedImage->move($destinationPath, $name);
             $banner->photo = $name;
         }
     
@@ -104,9 +106,10 @@ class BannerController extends Controller
     
         if ($request->hasFile('photo')) {
             $image = $request->file('photo');
-            $name = time().'.'.$image->getClientOriginalExtension();
+            $compressedImage = Image::make($image)->encode('jpg', 75);
+            $name = time().'.'.$compressedImage->getClientOriginalExtension();
             $destinationPath = public_path('/images');
-            $image->move($destinationPath, $name);
+            $compressedImage->move($destinationPath, $name);
             $banner->photo = $name;
         }
     
