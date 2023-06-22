@@ -46,7 +46,7 @@
 
 
                                                     <div class="form-group">
-                                                        <label>Gambar Deal
+                                                        <label>Gambar Deal (maks 1 MB)
                                                             <span class="text-danger"></span></label>
                                                         <input type="file" name="photo" id="photo"
                                                             class="form-control">
@@ -185,7 +185,7 @@
 
 
                                         <div class="form-group">
-                                            <label>Gambar Deal
+                                            <label>Gambar Deal (maks 1 MB)
                                                 <span class="text-danger"></span></label>
                                             <input type="file" name="photo" id="photo" class="form-control">
                                         </div>
