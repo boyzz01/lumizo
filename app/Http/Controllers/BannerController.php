@@ -48,7 +48,7 @@ class BannerController extends Controller
         ]);
     
         if ($validator->fails()) {
-            return redirect()->back()->with('error', 'File terlalu besar');
+            return redirect()->back()->with('error', 'File terlalu besar. Maksimum 1 MB yang diperbolehkan.');
         }
 
        
@@ -107,7 +107,16 @@ class BannerController extends Controller
         //
 
        
-
+        $validator = Validator::make($request->all(), [
+            'title' => 'required',
+            'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:1024',
+        ], [
+            'photo.max' => 'File terlalu besar. Maksimum 1 MB yang diperbolehkan.',
+        ]);
+    
+        if ($validator->fails()) {
+            return redirect()->back()->with('error', 'File terlalu besar. Maksimum 1 MB yang diperbolehkan.');
+        }
         $banner = Banner::find($id);
         $banner->title = $request->title;
     

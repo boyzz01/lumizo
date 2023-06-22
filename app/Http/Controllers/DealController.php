@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Deal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class DealController extends Controller
 {
@@ -34,10 +35,17 @@ class DealController extends Controller
     public function store(Request $request)
     {
         //
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'title' => 'required',
-            'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:1024',
+        ], [
+            'photo.max' => 'File terlalu besar. Maksimum 1 MB yang diperbolehkan.',
         ]);
+    
+        if ($validator->fails()) {
+            return redirect()->back()->with('error', 'File terlalu besar. Maksimum 1 MB yang diperbolehkan.');
+        }
+
 
         $deal = new Deal();
         $deal->title = $request->title;
@@ -92,7 +100,16 @@ class DealController extends Controller
     {
         //
 
-       
+        $validator = Validator::make($request->all(), [
+            'title' => 'required',
+            'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:1024',
+        ], [
+            'photo.max' => 'File terlalu besar. Maksimum 1 MB yang diperbolehkan.',
+        ]);
+    
+        if ($validator->fails()) {
+            return redirect()->back()->with('error', 'File terlalu besar. Maksimum 1 MB yang diperbolehkan.');
+        }
 
         $deal = Deal::find($id);
         $deal->title = $request->title;
