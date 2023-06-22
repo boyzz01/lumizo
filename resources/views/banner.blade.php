@@ -188,7 +188,8 @@
                                         <div class="form-group">
                                             <label>Gambar Banner
                                                 <span class="text-danger"></span></label>
-                                            <input type="file" name="photo" id="photo" class="form-control">
+                                            <input type="file" name="photo" id="photo" class="form-control"
+                                                accept="image/*" max="1000000">
                                         </div>
                                     </div>
                                 </div>
