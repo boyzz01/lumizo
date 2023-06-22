@@ -292,7 +292,7 @@
                                     $('#editNama').val(response.nama);
                                     $('#editHarga').val(response.harga);
 
-                                    var cleanedData = response.deskripsi.replace(/<br\s*[\/]?>/gi, '\n');
+                                    var cleanedData = response.deskripsi.replace(/<br\s*[\/]?>/gi, '');
                                     $('#editDeskripsi').val(cleanedData);
                                     console.log(cleanedData)
                                     $('#editJenisCatalog').val(response.jenis_catalog_id);
