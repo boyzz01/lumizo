@@ -291,6 +291,7 @@
                                         .replace(':id', sponsorId));
                                     $('#editNama').val(response.nama);
                                     $('#editHarga').val(response.harga);
+                                    console.log(response.deskripsi);
                                     var newData = response.deskripsi.replace(/<br \/>/g, '\n');
                                     $('#editDeskripsi').val(newData);
                                     $('#editJenisCatalog').val(response.jenis_catalog_id);
