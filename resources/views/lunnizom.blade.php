@@ -291,7 +291,7 @@
                                         .replace(':id', sponsorId));
                                     $('#editNama').val(response.nama);
                                     $('#editHarga').val(response.harga);
-                                    $('#editDeskripsi').val(response.deskripsi);
+                                    $('#editDeskripsi').text(response.deskripsi);
                                     $('#editJenisCatalog').val(response.jenis_catalog_id);
 
                                     $.ajax({
