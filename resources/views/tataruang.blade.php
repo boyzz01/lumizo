@@ -263,8 +263,7 @@
                                         .replace(':id', sponsorId));
                                     $('#editNama').val(response.nama);
                                     $('#editHarga').val(response.harga);
-                                    var newData = response.deskripsi.replace(/<br \/>/g, '\n');
-                                    $('#editDeskripsi').val(newData);
+                                    $('#editDeskripsi').val(response.deskripsi);
                                     $('#editJenisCatalog').val(response.jenis_catalog_id);
 
                                     $.ajax({
