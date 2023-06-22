@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Banner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Facades\Image;
 class BannerController extends Controller
 {
@@ -39,12 +40,16 @@ class BannerController extends Controller
     public function store(Request $request)
     {
         //
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'title' => 'required',
             'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:1024',
         ], [
             'photo.max' => 'File terlalu besar. Maksimum 1 MB yang diperbolehkan.',
         ]);
+    
+        if ($validator->fails()) {
+            return redirect()->back()->with('error', 'File terlalu besar');
+        }
 
        
     
