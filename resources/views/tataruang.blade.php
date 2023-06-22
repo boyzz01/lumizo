@@ -323,8 +323,8 @@
 
                         var myDropzone = new Dropzone("#teszone", {
                             url: "{{ route('catalog.storeFoto') }}",
-                            maxFilesize: 5, // MB
-                            maxFiles: 5,
+                            maxFilesize: 1, // MB
+                            maxFiles: 10,
                             acceptedFiles: ".jpg,.jpeg,.png,.gif",
                             dictDefaultMessage: "Drag and drop foto here or click to upload",
                             dictRemoveFile: "Remove",
@@ -365,8 +365,8 @@
                     function initDropzone(fotos) {
                         var myEditDropzone = new Dropzone("#editTeszone", {
                             url: "{{ route('catalog.storeFoto') }}",
-                            maxFilesize: 5, // MB
-                            maxFiles: 5,
+                            maxFilesize: 1, // MB
+                            maxFiles: 10,
                             acceptedFiles: ".jpg,.jpeg,.png,.gif",
                             dictDefaultMessage: "Drag and drop foto here or click to upload",
                             dictRemoveFile: "Remove",
