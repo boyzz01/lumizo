@@ -6,7 +6,6 @@ use App\Models\Banner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
-
 class BannerController extends Controller
 {
     /**
@@ -42,18 +41,21 @@ class BannerController extends Controller
         //
         $request->validate([
             'title' => 'required',
-            'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:1024',
+        ], [
+            'photo.max' => 'File terlalu besar. Maksimum 1 MB yang diperbolehkan.',
         ]);
 
+       
+    
         $banner = new Banner();
         $banner->title = $request->title;
     
         if ($request->hasFile('photo')) {
             $image = $request->file('photo');
-            $compressedImage = Image::make($image)->encode('jpg', 75);
-            $name = time().'.'.$compressedImage->getClientOriginalExtension();
+            $name = time().'.'.$image->getClientOriginalExtension();
             $destinationPath = public_path('/images');
-            $compressedImage->move($destinationPath, $name);
+            $image->move($destinationPath, $name);
             $banner->photo = $name;
         }
     
@@ -106,10 +108,9 @@ class BannerController extends Controller
     
         if ($request->hasFile('photo')) {
             $image = $request->file('photo');
-            $compressedImage = Image::make($image)->encode('jpg', 75);
-            $name = time().'.'.$compressedImage->getClientOriginalExtension();
+            $name = time().'.'.$image->getClientOriginalExtension();
             $destinationPath = public_path('/images');
-            $compressedImage->move($destinationPath, $name);
+            $image->move($destinationPath, $name);
             $banner->photo = $name;
         }
     
