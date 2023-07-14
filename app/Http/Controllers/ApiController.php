@@ -52,7 +52,14 @@ class ApiController extends Controller
     }
 
     public function getKatalogbyJenis($jenis){
-        $katalog = Catalog::with('fotos')->where('jenis_catalog_id', $jenis)->get();
+        if($jenis==6){
+            $jenis = [6, 7, 8];
+            $katalog = Catalog::with('fotos')->whereIn('jenis_catalog_id', $jenis)->get();
+            
+        }else{
+            $katalog = Catalog::with('fotos')->where('jenis_catalog_id', $jenis)->get();
+        }
+      
         return response()->json($katalog);
 
     }
