@@ -36,7 +36,7 @@ class ApiController extends Controller
 
         // Jika pengguna tidak ditemukan, kirimkan pesan error
         if (!$user) {
-            return response()->json(['Email tidak ditemukan'], 404);
+            return response()->json('Email tidak ditemukan', 404);
         }
 
         // Generate OTP
@@ -49,7 +49,7 @@ class ApiController extends Controller
         // Kirim OTP ke email pengguna
         Mail::to($request->email)->send(new OtpEmail($otp)); // Sesuaikan dengan implementasi email Anda
 
-        return response()->json(['OTP telah dikirim ke emal anda']);
+        return response()->json('OTP telah dikirim ke emal anda');
     }
 
     public function getSponsor()
