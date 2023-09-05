@@ -31,22 +31,26 @@ class ApiController extends Controller
 {
     //
     public function getotp(Request $request)
-{
-    // Generate OTP
-    $otp = rand(100000, 999999);
+    {
+        $user = User::where('email', $request->email)->first();
 
-    // Simpan OTP ke kolom 'pw_token' pada tabel 'users'
-    $user = User::where('email', $request->email)->first();
-    if ($user) {
+        // Jika pengguna tidak ditemukan, kirimkan pesan error
+        if (!$user) {
+            return response()->json(['message' => 'Email tidak ditemukan'], 404);
+        }
+
+        // Generate OTP
+        $otp = rand(100000, 999999);
+
+        // Simpan OTP ke kolom 'pw_token' pada tabel 'users'
         $user->pw_token = $otp;
         $user->save();
+
+        // Kirim OTP ke email pengguna
+        Mail::to($request->email)->send(new OtpEmail($otp)); // Sesuaikan dengan implementasi email Anda
+
+        return response()->json(['message' => 'OTP sent successfully']);
     }
-
-    // Kirim OTP ke email pengguna
-    Mail::to($request->email)->send(new OtpEmail($otp)); // Sesuaikan dengan implementasi email Anda
-
-    return response()->json(['message' => 'OTP sent successfully']);
-}
 
     public function getSponsor()
     {
