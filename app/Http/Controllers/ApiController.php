@@ -52,7 +52,7 @@ class ApiController extends Controller
         return response()->json('OTP telah dikirim ke email anda');
     }
 
-    public function resetPassword(Request $request)
+    public function resetpassword(Request $request)
     {
         // Validasi input
         $validator = Validator::make($request->all(), [

@@ -31,7 +31,7 @@ Route::get('katalog', [ApiController::class, 'getKatalog']);
 Route::post('/login', [ApiController::class, 'check_user']);
 Route::post('/cek_verif', [ApiController::class, 'check_verif']);
 Route::post('/register', [ApiController::class, 'register']);
-Route::post('/resetpassword', [ApiController::class, 'resetPassword']);
+Route::post('/resetpassword', [ApiController::class, 'resetpassword']);
 
 Route::post('/getotp', [ApiController::class, 'getotp']);
 Route::get('users/{email}', [ApiController::class, 'showByEmail']);
