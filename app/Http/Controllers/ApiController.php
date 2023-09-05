@@ -74,9 +74,9 @@ class ApiController extends Controller
             $user->pw_token = null; // Hapus OTP
             $user->save();
 
-            return response()->json(['message' => 'Password berhasil direset']);
+            return response()->json('Password berhasil direset');
         } else {
-            return response()->json(['message' => 'Reset password gagal'], 400);
+            return response()->json('Kode OTP salah', 400);
         }
     }
 
