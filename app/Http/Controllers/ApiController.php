@@ -49,7 +49,7 @@ class ApiController extends Controller
         // Kirim OTP ke email pengguna
         Mail::to($request->email)->send(new OtpEmail($otp)); // Sesuaikan dengan implementasi email Anda
 
-        return response()->json('OTP telah dikirim ke emal anda');
+        return response()->json('OTP telah dikirim ke email anda');
     }
 
     public function getSponsor()
