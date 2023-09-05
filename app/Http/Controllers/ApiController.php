@@ -54,30 +54,7 @@ class ApiController extends Controller
 
     public function resetpassword(Request $request)
     {
-        // Validasi input
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|email',
-            'otp' => 'required',
-            'password' => 'required|min:8', // Sesuaikan dengan kebutuhan Anda
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 400);
-        }
-
-        $user = User::where('email', $request->email)
-                   ->where('pw_token', $request->otp)
-                   ->first();
-
-        if ($user) {
-            $user->password = bcrypt($request->password);
-            $user->pw_token = null; // Hapus OTP
-            $user->save();
-
-            return response()->json('Password berhasil direset');
-        } else {
-            return response()->json('Kode OTP salah', 400);
-        }
+        return response()->json('Kode OTP salah', 400);
     }
 
     public function getSponsor()
