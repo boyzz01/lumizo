@@ -54,7 +54,18 @@ class ApiController extends Controller
 
     public function resetpassword(Request $request)
     {
-        return response()->json('Kode OTP salah', 400);
+        // Validasi input
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+            'otp' => 'required',
+            'password' => 'required|min:8', // Sesuaikan dengan kebutuhan Anda
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 400);
+        }
+
+        return response()->json('Kode okee salah', 400);
     }
 
     public function getSponsor()
