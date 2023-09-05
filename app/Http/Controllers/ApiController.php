@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\OtpEmail;
 use App\Mail\VerificationEmail;
 use App\Models\Anggota;
 use App\Models\Article;
@@ -29,6 +30,23 @@ use Illuminate\Support\Str;
 class ApiController extends Controller
 {
     //
+    public function getotp(Request $request)
+{
+    // Generate OTP
+    $otp = rand(100000, 999999);
+
+    // Simpan OTP ke kolom 'pw_token' pada tabel 'users'
+    $user = User::where('email', $request->email)->first();
+    if ($user) {
+        $user->pw_token = $otp;
+        $user->save();
+    }
+
+    // Kirim OTP ke email pengguna
+    Mail::to($request->email)->send(new OtpEmail($otp)); // Sesuaikan dengan implementasi email Anda
+
+    return response()->json(['message' => 'OTP sent successfully']);
+}
 
     public function getSponsor()
     {
