@@ -66,8 +66,8 @@ class ApiController extends Controller
         }
 
         $user = User::where('email', $request->email)
-                   ->where('pw_token', $request->otp)
-                   ->first();
+            ->where('pw_token', $request->otp)
+            ->first();
 
         if ($user) {
             $user->password = bcrypt($request->password);
@@ -95,40 +95,43 @@ class ApiController extends Controller
         return response()->json(Deal::all());
     }
 
-    public function getDetailKatalog($id){
+    public function getDetailKatalog($id)
+    {
         $katalog = Catalog::with('fotos')->find($id);
         return response()->json($katalog);
-
     }
 
-    public function getKatalogbyJenis($jenis){
-        if($jenis==6){
-            $jenis = [6, 7, 8];
-            $katalog = Catalog::with('fotos')->whereIn('jenis_catalog_id', $jenis)->get();
-            
-        }else{
-            $katalog = Catalog::with('fotos')->where('jenis_catalog_id', $jenis)->get();
-        }
-      
+    public function getKatalogbyJenis($jenis)
+    {
+        // if($jenis==6){
+        //     $jenis = [6, 7, 8];
+        //     $katalog = Catalog::with('fotos')->whereIn('jenis_catalog_id', $jenis)->get();
+
+        // }else{
+        //     $katalog = Catalog::with('fotos')->where('jenis_catalog_id', $jenis)->get();
+        // }
+        $katalog = Catalog::with('fotos')->where('jenis_catalog_id', $jenis)->get();
         return response()->json($katalog);
-
     }
 
-    public function getKatalog(){
+    public function getKatalog()
+    {
         $katalog = Catalog::with('fotos')->get();
         return response()->json($katalog);
-
     }
 
-    public function getArtikel(){
+    public function getArtikel()
+    {
         return response()->json(Article::all());
     }
 
-    public function vouchers(){
+    public function vouchers()
+    {
         return response()->json(Voucher::all());
     }
 
-    public function getDetailArtikel($id){
+    public function getDetailArtikel($id)
+    {
         return response()->json(Article::find($id));
     }
 
@@ -147,7 +150,7 @@ class ApiController extends Controller
                 ->json([
                     'success' => false,
                     'message' => "Email Belum Terdaftar"
-                ],402);
+                ], 402);
         } else {
 
             if ($user->is_verified == 1) {
@@ -156,20 +159,20 @@ class ApiController extends Controller
                         ->json([
                             'success' => true,
                             'message' => $user
-                        ],200);
+                        ], 200);
                 } else {
                     return response()
                         ->json([
                             'success' => false,
                             'message' => "Username Atau Password Salah"
-                        ],402);
+                        ], 402);
                 }
             } else {
                 return response()
                     ->json([
                         'success' => false,
                         'message' => "Email Belum Terverifikasi"
-                    ],402);
+                    ], 402);
             }
         }
     }
@@ -192,19 +195,19 @@ class ApiController extends Controller
 
         if ($emailExists) {
             return response()
-            ->json([
-                'success' => false,
-                'message' => "Email Sudah Terdaftar"
-            ], 422);
-        }else{
-           
+                ->json([
+                    'success' => false,
+                    'message' => "Email Sudah Terdaftar"
+                ], 422);
+        } else {
+
             $validator = Validator::make($request->all(), [
                 'email' => 'required|email|unique:users',
                 'password' => 'required|min:8',
                 'nama' => 'required',
                 'nohp' => 'required',
             ]);
-        
+
             if ($validator->fails()) {
                 return response()->json(['success' => false, 'message' => $validator->errors()], 422);
             }
@@ -214,23 +217,16 @@ class ApiController extends Controller
                 'password' => bcrypt($request->password),
                 'nama' => $request->nama,
                 'nohp' => $request->nohp,
-                'verification_token' =>Str::random(40)
+                'verification_token' => Str::random(40)
             ]);
-    
+
             $user->save();
-    
+
             Mail::to($user->email)->send(new VerificationEmail($user));
-    
+
             // Kirim email verifikasi ke pengguna
-    
+
             return response()->json(['success' => true, 'message' => 'Registration successful. Please check your email for verification.'], 200);
         }
-
-       
     }
-
-  
-
-
-   
 }
