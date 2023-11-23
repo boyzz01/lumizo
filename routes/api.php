@@ -23,6 +23,7 @@ Route::get('artikel/{id}', [ApiController::class, 'getDetailArtikel']);
 
 Route::get('katalog/{id}', [ApiController::class, 'getDetailKatalog']);
 Route::get('katalog/kategori/{jenis}', [ApiController::class, 'getKatalogbyJenis']);
+Route::get('kataloghome/kategori/{jenis}', [ApiController::class, 'getKatalogbyJenisHome']);
 
 Route::get('katalog', [ApiController::class, 'getKatalog']);
 
@@ -36,5 +37,5 @@ Route::post('/resetpassword', [ApiController::class, 'resetpassword']);
 Route::post('/getotp', [ApiController::class, 'getotp']);
 Route::get('users/{email}', [ApiController::class, 'showByEmail']);
 
-Route::get('/verify/{token}', [ApiController::class,'verif'] )->name('verify');
+Route::get('/verify/{token}', [ApiController::class, 'verif'])->name('verify');
 Route::get('/vouchers', [ApiController::class, 'vouchers']);

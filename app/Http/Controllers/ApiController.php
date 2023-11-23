@@ -114,6 +114,18 @@ class ApiController extends Controller
         return response()->json($katalog);
     }
 
+    public function getKatalogbyJenisHome($jenis)
+    {
+        if ($jenis == 6) {
+            $jenis = [6, 7, 8];
+            $katalog = Catalog::with('fotos')->whereIn('jenis_catalog_id', $jenis)->get()->limit(5);
+        } else {
+            $katalog = Catalog::with('fotos')->where('jenis_catalog_id', $jenis)->get()->limit(5);
+        }
+        //$katalog = Catalog::with('fotos')->where('jenis_catalog_id', $jenis)->get();
+        return response()->json($katalog);
+    }
+
     public function getKatalog()
     {
         $katalog = Catalog::with('fotos')->get();
