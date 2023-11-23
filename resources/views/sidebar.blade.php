@@ -153,7 +153,7 @@ function active($currect_page)
                     </a>
                 </li>
 
-                <li class="menu-item <?php active('tataruang.index'); ?>" aria-haspopup="true">
+                {{-- <li class="menu-item <?php active('tataruang.index'); ?>" aria-haspopup="true">
                     <a href="{{ route('tataruang.index') }}" class="menu-link">
                         <span class="svg-icon menu-icon">
                             <img src="{{ asset('assets/img/tataruang.png') }} " alt="Gambar Icon"
@@ -161,7 +161,7 @@ function active($currect_page)
                         </span>
                         <span class="menu-text">Tataruang</span>
                     </a>
-                </li>
+                </li> --}}
 
                 <li class="menu-item <?php active('legalin.index'); ?>" aria-haspopup="true">
                     <a href="{{ route('legalin.index') }}" class="menu-link">

@@ -29,13 +29,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/login', [LoginController::class,'index'] )->name('login')->middleware('guest');
-Route::post('/login', [LoginController::class,'login'] )->name('admin.login.submit');
-Route::post('/logout', [LoginController::class,'logout'])->name('logout');
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/login', [LoginController::class, 'login'])->name('admin.login.submit');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::get('/', [DashboardController::class,'index'] )->name('home')->middleware('admin');
+Route::get('/', [DashboardController::class, 'index'])->name('home')->middleware('admin');
 
-Route::get('/verify/{token}', [RegisterController::class,'verif'] )->name('verify');
+Route::get('/verify/{token}', [RegisterController::class, 'verif'])->name('verify');
 
 
 //crud
@@ -55,7 +55,7 @@ Route::resource('deals', DealController::class)->middleware('admin');
 Route::resource('lunnizom', LunnizomController::class)->middleware('admin');
 Route::resource('property', PropertyManagementController::class)->middleware('admin');
 Route::resource('rumahuni', RumahuniController::class)->middleware('admin');
-Route::resource('tataruang', TataRuangController::class)->middleware('admin');
+// Route::resource('tataruang', TataRuangController::class)->middleware('admin');
 Route::resource('legalin', LegalinController::class)->middleware('admin');
 
 Route::post('catalog/foto', [FotoCatalogController::class, 'store'])->name('catalog.storeFoto');
@@ -65,5 +65,3 @@ Route::delete('catalog/foto/{id}', [FotoCatalogController::class, 'destroy'])->n
 Route::get('catalog/{id}/fotos',  [FotoCatalogController::class, 'getCatalogFotos'])->name('catalog.fotos');
 
 Route::delete('/foto/{id}', [FotoCatalogController::class, 'destroy'])->name('catalog.destroy');
-
-
