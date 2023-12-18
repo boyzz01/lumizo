@@ -20,7 +20,7 @@ class MerchandiseController extends Controller
         //
         $jenisCatalogs = JenisCatalog::where('id', '=', 9)->first();
         $catalogs = Catalog::where('jenis_catalog_id', $jenisCatalogs->id)->with('fotos')->get();
-        return view('rumahuni', compact('catalogs', 'jenisCatalogs'));
+        return view('merchandise', compact('catalogs', 'jenisCatalogs'));
     }
 
     /**
