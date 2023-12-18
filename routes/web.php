@@ -10,6 +10,7 @@ use App\Http\Controllers\FotoCatalogController;
 use App\Http\Controllers\LegalinController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LunnizomController;
+use App\Http\Controllers\MerchandiseController;
 use App\Http\Controllers\PropertyManagementController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RumahuniController;
@@ -55,6 +56,7 @@ Route::resource('deals', DealController::class)->middleware('admin');
 Route::resource('lunnizom', LunnizomController::class)->middleware('admin');
 Route::resource('property', PropertyManagementController::class)->middleware('admin');
 Route::resource('rumahuni', RumahuniController::class)->middleware('admin');
+Route::resource('merchandise', MerchandiseController::class)->middleware('admin');
 // Route::resource('tataruang', TataRuangController::class)->middleware('admin');
 Route::resource('legalin', LegalinController::class)->middleware('admin');
 

@@ -153,6 +153,17 @@ function active($currect_page)
                     </a>
                 </li>
 
+
+                <li class="menu-item <?php active('merchandise.index'); ?>" aria-haspopup="true">
+                    <a href="{{ route('merchandise.index') }}" class="menu-link">
+                        <span class="svg-icon menu-icon">
+                            <img src="{{ asset('assets/img/merchandise.png') }} " alt="Gambar Icon"
+                                style="width: 24px; height: 24px;">
+                        </span>
+                        <span class="menu-text">Merchandise</span>
+                    </a>
+                </li>
+
                 {{-- <li class="menu-item <?php active('tataruang.index'); ?>" aria-haspopup="true">
                     <a href="{{ route('tataruang.index') }}" class="menu-link">
                         <span class="svg-icon menu-icon">
